@@ -4,6 +4,12 @@ A full-stack landing page developed as part of a Full Stack Web Development assi
 
 The project includes a Next.js frontend and a Node.js/Express backend with MongoDB. Landing page content such as the hero section and metrics is stored in MongoDB and can be updated through the admin panel.
 
+## Live Deployments
+
+* **Live Website**: [https://eminenture-frontend.onrender.com](https://eminenture-frontend.onrender.com)
+* **Admin Panel**: [https://eminenture-frontend.onrender.com/admin](https://eminenture-frontend.onrender.com/admin)
+* **Backend API**: [https://eminenture-backend-db4y.onrender.com/api/content](https://eminenture-backend-db4y.onrender.com/api/content)
+
 ## Features
 
 * Responsive enterprise landing page
