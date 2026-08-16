@@ -42,7 +42,7 @@ const FALLBACK_CONTENT = {
 };
 
 async function getLandingContent() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
   try {
     const res = await fetch(`${apiUrl}/api/content`, {
       cache: "no-store"
