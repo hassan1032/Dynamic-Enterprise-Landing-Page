@@ -15,7 +15,7 @@ export default function Hero({ headline, subtitle, ctaText, secondaryCta }: Hero
       <div className="absolute -top-10 -right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center justify-center">
         {/* Dynamic Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-8 backdrop-blur-md shadow-md">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
@@ -23,17 +23,17 @@ export default function Hero({ headline, subtitle, ctaText, secondaryCta }: Hero
         </div>
 
         {/* Cvent-Style High Impact Display Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] mb-6">
+        <h1 className="text-3xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.15] mb-6 text-center max-w-4xl mx-auto">
           {headline || "Transforming Global Enterprises with Next-Gen Digital Solutions"}
         </h1>
 
         {/* Subtitle */}
-        <p className="max-w-3xl mx-auto text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-10">
+        <p className="max-w-3xl mx-auto text-base sm:text-xl text-slate-300 font-normal leading-relaxed mb-10 text-center">
           {subtitle || "Eminenture delivers tech-driven business process management, data analytics, and automation to power Fortune 500 growth."}
         </p>
 
         {/* Dynamic Action CTAs - Smooth Scroll Anchor Targets */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <Link
             href="/#services"
             className="w-full sm:w-auto px-8 py-4 text-base font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 rounded-xl hover:shadow-xl hover:shadow-emerald-500/25 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2"
@@ -53,8 +53,8 @@ export default function Hero({ headline, subtitle, ctaText, secondaryCta }: Hero
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-16 pt-10 border-t border-slate-800/80">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-6">
+        <div className="mt-16 pt-10 border-t border-slate-800/80 w-full text-center">
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-6 text-center">
             Empowering Operations For Industry Leaders
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
