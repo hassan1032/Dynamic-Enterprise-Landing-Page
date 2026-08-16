@@ -32,7 +32,7 @@ export default function Hero({ headline, subtitle, ctaText, secondaryCta }: Hero
           {subtitle || "Eminenture delivers tech-driven business process management, data analytics, and automation to power Fortune 500 growth."}
         </p>
 
-        {/* Dynamic Action CTAs */}
+        {/* Dynamic Action CTAs - Smooth Scroll Anchor Targets */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/#services"
@@ -45,7 +45,7 @@ export default function Hero({ headline, subtitle, ctaText, secondaryCta }: Hero
           </Link>
 
           <Link
-            href="/#services"
+            href="/#stats"
             className="w-full sm:w-auto px-8 py-4 text-base font-semibold text-slate-200 bg-slate-800/80 border border-slate-700/80 rounded-xl hover:bg-slate-800 hover:border-emerald-500/50 hover:text-emerald-400 transition-all flex items-center justify-center gap-2 backdrop-blur-md"
           >
             <span>{secondaryCta || "Schedule Consultation"}</span>
