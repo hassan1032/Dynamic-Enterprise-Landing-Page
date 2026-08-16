@@ -191,7 +191,11 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-slate-100 pt-10 pb-6 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#0f172a] text-slate-100 pt-8 pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-grid-pattern">
+      {/* Background Ambient Glow Orbs */}
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-emerald-500/10 to-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
       {/* Top-Middle Modern Pill Toast Notification */}
       {toastMessage && (
         <div
@@ -205,10 +209,12 @@ export default function AdminPage() {
         </div>
       )}
 
-      <div className="max-w-5xl mx-auto space-y-5">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-slate-800 gap-3">
+      <div className="max-w-5xl mx-auto space-y-6 relative z-10">
+        {/* Header Bar */}
+        <div className="glass-card rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-slate-800/80 shadow-2xl">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Admin Panel</span>
               <span>•</span>
               <span>Real-Time Sync</span>
@@ -224,7 +230,7 @@ export default function AdminPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 hover:text-white transition-all flex items-center gap-1.5"
+              className="px-4 py-2.5 text-xs font-bold text-slate-200 bg-slate-800/90 border border-slate-700/80 rounded-xl hover:bg-slate-800 hover:border-emerald-500/50 hover:text-emerald-400 transition-all flex items-center gap-2 shadow-md"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -235,17 +241,21 @@ export default function AdminPage() {
           </div>
         </div>
 
-        <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 sm:p-5 backdrop-blur-md">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">
-            ⚡ Quick Preset Templates
-          </h3>
+        {/* Preset Templates Card */}
+        <div className="glass-card rounded-2xl p-5 border border-slate-800/80 shadow-xl backdrop-blur-xl">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-emerald-400 font-bold">⚡</span>
+            <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              Quick Preset Templates
+            </h3>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {PRESET_TEMPLATES.map((preset, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => applyPreset(preset)}
-                className="text-left p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 hover:bg-slate-800 text-xs font-medium text-slate-200 transition-all flex items-center justify-between group"
+                className="text-left p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800/90 text-xs font-semibold text-slate-200 transition-all flex items-center justify-between group shadow-sm"
               >
                 <span>{preset.name}</span>
                 <span className="text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">Apply →</span>
@@ -255,21 +265,22 @@ export default function AdminPage() {
         </div>
 
         {loading ? (
-          <div className="p-8 text-center text-slate-400 bg-slate-900/40 rounded-2xl border border-slate-800">
+          <div className="p-10 text-center text-slate-400 glass-card rounded-2xl border border-slate-800">
             <div className="inline-block w-8 h-8 border-4 border-emerald-400 border-t-transparent rounded-full animate-spin mb-3"></div>
             <p className="text-sm font-semibold">Loading enterprise content...</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Hero Section Config Card */}
+            <div className="glass-card rounded-2xl p-5 sm:p-6 space-y-4 border border-slate-800/80 shadow-2xl backdrop-blur-xl">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
                 <h2 className="text-base font-bold text-white flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
                   Hero Section Configuration
                 </h2>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 <div>
                   <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                     Hero Headline
@@ -278,7 +289,7 @@ export default function AdminPage() {
                     rows={2}
                     value={formData.heroHeadline}
                     onChange={(e) => setFormData({ ...formData, heroHeadline: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 transition-colors"
+                    className="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/50 transition-colors shadow-inner"
                     placeholder="Enter main headline..."
                     required
                   />
@@ -292,13 +303,13 @@ export default function AdminPage() {
                     rows={2}
                     value={formData.heroSubtitle}
                     onChange={(e) => setFormData({ ...formData, heroSubtitle: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-emerald-400 transition-colors"
+                    className="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/50 transition-colors shadow-inner"
                     placeholder="Enter subtitle text..."
                     required
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
                     <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                       Primary CTA Button Text
@@ -307,7 +318,7 @@ export default function AdminPage() {
                       type="text"
                       value={formData.heroCtaText}
                       onChange={(e) => setFormData({ ...formData, heroCtaText: e.target.value })}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-emerald-400 transition-colors"
+                      className="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/50 transition-colors shadow-inner"
                       placeholder="e.g. Explore Enterprise Solutions"
                       required
                     />
@@ -321,7 +332,7 @@ export default function AdminPage() {
                       type="text"
                       value={formData.heroSecondaryCta || ""}
                       onChange={(e) => setFormData({ ...formData, heroSecondaryCta: e.target.value })}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-emerald-400 transition-colors"
+                      className="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/50 transition-colors shadow-inner"
                       placeholder="e.g. Schedule Consultation"
                     />
                   </div>
@@ -329,8 +340,9 @@ export default function AdminPage() {
               </div>
             </div>
 
-            <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            {/* Stats Config Card */}
+            <div className="glass-card rounded-2xl p-5 sm:p-6 space-y-4 border border-slate-800/80 shadow-2xl backdrop-blur-xl">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
                 <div>
                   <h2 className="text-base font-bold text-white flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
@@ -343,27 +355,27 @@ export default function AdminPage() {
                 <button
                   type="button"
                   onClick={addStatItem}
-                  className="px-3 py-1.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 rounded-lg hover:bg-emerald-500/20 transition-all flex items-center gap-1"
+                  className="px-3.5 py-1.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 rounded-xl hover:bg-emerald-500/20 transition-all flex items-center gap-1 shadow-sm"
                 >
                   + Add Metric
                 </button>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {formData.stats.map((stat, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5 relative group"
+                    className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/90 space-y-2.5 relative group shadow-inner"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         Metric #{idx + 1}
                       </span>
                       {formData.stats.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeStatItem(idx)}
-                          className="text-xs font-semibold text-rose-400 hover:text-rose-300"
+                          className="text-xs font-semibold text-rose-400 hover:text-rose-300 transition-colors"
                         >
                           Remove
                         </button>
@@ -379,7 +391,7 @@ export default function AdminPage() {
                           type="text"
                           value={stat.value}
                           onChange={(e) => handleStatChange(idx, "value", e.target.value)}
-                          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-emerald-400 font-bold focus:outline-none focus:border-emerald-400"
+                          className="w-full bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-2 text-sm text-emerald-400 font-bold focus:outline-none focus:border-emerald-400"
                           placeholder="e.g. 500+"
                           required
                         />
@@ -393,7 +405,7 @@ export default function AdminPage() {
                           type="text"
                           value={stat.label}
                           onChange={(e) => handleStatChange(idx, "label", e.target.value)}
-                          className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-emerald-400"
+                          className="w-full bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-400"
                           placeholder="e.g. Global Enterprise Clients"
                           required
                         />
@@ -407,7 +419,7 @@ export default function AdminPage() {
                           type="text"
                           value={stat.description || ""}
                           onChange={(e) => handleStatChange(idx, "description", e.target.value)}
-                          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-slate-300 focus:outline-none focus:border-emerald-400"
+                          className="w-full bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-emerald-400"
                           placeholder="e.g. Trusted by Fortune 500 leaders worldwide"
                         />
                       </div>
@@ -417,22 +429,23 @@ export default function AdminPage() {
               </div>
             </div>
 
+            {/* Bottom Actions */}
             <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => fetchContent(0)}
-                className="px-5 py-2.5 text-xs font-semibold text-slate-400 bg-slate-800 hover:bg-slate-700 hover:text-white rounded-xl transition-all"
+                className="px-6 py-2.5 text-xs font-semibold text-slate-400 bg-slate-800/80 border border-slate-700/60 hover:bg-slate-800 hover:text-white rounded-xl transition-all"
               >
                 Discard Changes
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="px-7 py-2.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:opacity-90 rounded-xl transition-all shadow-lg shadow-emerald-500/20 active:scale-95 disabled:opacity-50 flex items-center gap-2"
+                className="px-8 py-3 text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:opacity-90 rounded-xl transition-all shadow-xl shadow-emerald-500/25 active:scale-95 disabled:opacity-50 flex items-center gap-2"
               >
                 {saving ? (
                   <>
-                    <span className="w-3.5 h-3.5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
+                    <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
                     <span>Saving to MongoDB...</span>
                   </>
                 ) : (
