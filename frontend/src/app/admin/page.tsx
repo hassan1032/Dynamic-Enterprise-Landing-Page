@@ -76,9 +76,10 @@ export default function AdminPage() {
     stats: []
   });
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://eminenture-backend-db4y.onrender.com";
+  const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "https://eminenture-backend-db4y.onrender.com";
+  const apiUrl = rawApiUrl.replace(/\/+$/, "");
 
-  const fetchContent = async () => {
+  const fetchContent = async (retryCount = 0) => {
     setLoading(true);
     try {
       const res = await fetch(`${apiUrl}/api/content`, { cache: "no-store" });
@@ -93,10 +94,16 @@ export default function AdminPage() {
           heroSecondaryCta: hero.secondaryCta || data.heroSecondaryCta || "Schedule Consultation",
           stats: data.stats || []
         });
+      } else {
+        throw new Error("Invalid API response format");
       }
     } catch (err) {
-      console.error("Failed to load content from API:", err);
-      showToast("Error connecting to backend API", "error");
+      console.error(`[Admin API] Connection attempt ${retryCount + 1} failed:`, err);
+      if (retryCount < 3) {
+        setTimeout(() => fetchContent(retryCount + 1), 2500);
+      } else {
+        showToast("Error connecting to backend API", "error");
+      }
     } finally {
       setLoading(false);
     }
@@ -413,7 +420,7 @@ export default function AdminPage() {
             <div className="flex items-center justify-end gap-4 pt-4">
               <button
                 type="button"
-                onClick={fetchContent}
+                onClick={() => fetchContent(0)}
                 className="px-6 py-3 text-sm font-semibold text-slate-400 bg-slate-800 hover:bg-slate-700 hover:text-white rounded-xl transition-all"
               >
                 Discard Changes

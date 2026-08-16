@@ -42,7 +42,9 @@ const FALLBACK_CONTENT = {
 };
 
 async function getLandingContent() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://eminenture-backend-db4y.onrender.com";
+  const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "https://eminenture-backend-db4y.onrender.com";
+  const apiUrl = rawApiUrl.replace(/\/+$/, "");
+
   try {
     const res = await fetch(`${apiUrl}/api/content`, {
       cache: "no-store"
